@@ -12,7 +12,5 @@
 			include('modules/loaitin/sua.php');
 		
 	}
-	
-		include('modules/loaitin/lietke.php');
-	
+		include('modules/loaitin/lietke.php');	
 ?>

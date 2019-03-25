@@ -1,54 +1,53 @@
 <?php
 	include('../config.php');
-	$tenbaiviet=$_POST['tenbaiviet'];
-	$tomtat=$_POST['tomtat'];
-	$noidung=$_POST['noidung'];
-	$loaitin=$_POST['loaitin'];
-	$trangthai=$_POST['trangthai'];
-	$thutu=$_POST['thutu'];
+	$TieuDe=$_POST['TieuDe'];
+	$TomTat=$_POST['TomTat'];
+	$NoiDung=$_POST['NoiDung'];
+	$loaitintuc=$_POST['loaitintuc'];
+	$AnHien=$_POST['AnHien'];
 	$id=$_GET['id'];
 	if(isset($_POST['them'])){
 		//them loai tin
-		$tenanh=$_FILES['anhminhhoa']['name'];
+		$tenanh=$_FILES['UrlHinh']['name'];
 		if($tenanh!=''){
 		$time=date('Ymdhis');
 		$tenanh=$time.$tenanh;
 		$dich='../../../uploads/'.$tenanh;
-		copy($_FILES['anhminhhoa']['tmp_name'],$dich);
+		copy($_FILES['UrlHinh']['tmp_name'],$dich);
 		$dich=substr($dich,9);
 		}
-		$sql="insert into baiviet(tenbaiviet,anhminhhoa,tomtat,noidung,idloaitin,trangthai,thutu)
-		values('$tenbaiviet','$dich','$tomtat','$noidung','$loaitin','$trangthai','$thutu')";
+		$sql="insert into Tintuc(TieuDe,UrlHinh,TomTat,NoiDung,MaLTT,AnHien)
+		values('$TieuDe','$dich','$TomTat','$NoiDung','$loaitintuc','$AnHien')";
 		mysql_query($sql);
-		header('location:../../index.php?quanly=baiviet&ac=them');
+		header('location:../../index.php?quanly=Tintuc&ac=them');
 	}elseif(isset($_POST['sua'])){
 		//sua loai tin
-		$tenanh=$_FILES['anhminhhoa']['name'];
+		$tenanh=$_FILES['UrlHinh']['name'];
 		if($tenanh!=''){
 		$time=date('Ymdhis');
 		$tenanh=$time.$tenanh;
 		$dich='../../../uploads/'.$tenanh;
-		copy($_FILES['anhminhhoa']['tmp_name'],$dich);
+		copy($_FILES['UrlHinh']['tmp_name'],$dich);
 		$dich=substr($dich,9);
-		$sql="update baiviet set tenbaiviet='$tenbaiviet',anhminhhoa='$dich',tomtat='$tomtat',noidung='$noidung',idloaitin='$loaitin',trangthai='$trangthai',thutu='$thutu'
-		where idbaiviet='$id'";
+		$sql="update Tintuc set TieuDe='$TieuDe',UrlHinh='$dich',TomTat='$TomTat',NoiDung='$NoiDung',MaLTT='$loaitintuc',AnHien='$AnHien'
+		where MaTin='$id'";
 		//layanh
-		$layanh="select anhminhhoa from baiviet where idbaiviet='$id'";
-		$baiviet=mysql_query($layanh);
-		$dong=mysql_fetch_array($baiviet);
-		if($dong['anhminhhoa']!='')
-			unlink("../../../".$dong['anhminhhoa']);
+		$layanh="select UrlHinh from Tintuc where MaTin='$id'";
+		$Tintuc=mysql_query($layanh);
+		$dong=mysql_fetch_array($Tintuc);
+		if($dong['UrlHinh']!='')
+			unlink("../../../".$dong['UrlHinh']);
 		}else{
-			$sql="update baiviet set tenbaiviet='$tenbaiviet',noidung='$noidung',tomtat='$tomtat',idloaitin='$loaitin',trangthai='$trangthai',thutu='$thutu'
-			where idbaiviet='$id'";
+			$sql="update Tintuc set TieuDe='$TieuDe',NoiDung='$NoiDung',TomTat='$TomTat',MaLTT='$loaitintuc',AnHien='$AnHien'
+			where MaTin='$id'";
 		}
 		mysql_query($sql);
-		header('location:../../index.php?quanly=baiviet&ac=sua&id='.$id);
+		header('location:../../index.php?quanly=Tintuc&ac=sua&id='.$id);
 	}else{
 		//xoa loai tin
-		$sql="delete from baiviet where idbaiviet='$id' ";
+		$sql="delete from Tintuc where MaTin='$id' ";
 		mysql_query($sql);
-		header('location:../../index.php?quanly=baiviet&ac=them');
+		header('location:../../index.php?quanly=Tintuc&ac=them');
 		
 	}
 ?>

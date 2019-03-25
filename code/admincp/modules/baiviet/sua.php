@@ -1,12 +1,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php
  
- $sql="select * from baiviet where idbaiviet='$_GET[id]'";
- $baiviet=mysql_query($sql);
- $dong=mysql_fetch_array($baiviet);
+ $sql="select * from Tintuc where MaTin='$_GET[id]'";
+ $tintuc=mysqli_query($connect,$sql);
+ $dong=mysqli_fetch_array($tintuc);
 ?>
 
-<form action="modules/baiviet/xuly.php?id=<?php echo $dong['idbaiviet'] ?>" method="post" enctype="multipart/form-data">
+<form action="modules/Tintuc/xuly.php?id=<?php echo $dong['MaTin'] ?>" method="post" enctype="multipart/form-data">
 <div class="content-left">
 <script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
 <script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
@@ -17,48 +17,48 @@
   <tr>
     <td>Tên bài viết</td>
     <td><label>
-      <input type="text" name="tenbaiviet" id="tenbaiviet" value="<?php echo $dong['tenbaiviet'] ?>">
+      <input type="text" name="TieuDe" id="TieuDe" value="<?php echo $dong['TieuDe'] ?>">
     </label></td>
   </tr>
   <tr>
     <td>Ảnh minh họa</td>
     <td><label>
-      <input type="file" name="anhminhhoa" id="anhminhhoa" />
-      <img src="../<?php echo $dong['anhminhhoa'] ?>" width="85" height="85" />
+      <input type="file" name="UrlHinh" id="UrlHinh" />
+      <img src="../<?php echo $dong['UrlHinh'] ?>" width="85" height="85" />
     </label></td>
   </tr>
   <tr>
     <td>Tóm tắt</td>
     <td><label>
-      <textarea name="tomtat" id="tomtat" cols="45" rows="5" >
-      	<?php  echo $dong['tomtat']?>
+      <textarea name="TomTat" id="TomTat" cols="45" rows="5" >
+      	<?php  echo $dong['TomTat']?>
       </textarea>
     </label></td>
   </tr>
   <tr>
     <td>Nội dụng</td>
     <td><label>
-      <textarea name="noidung" id="noidung" cols="45" rows="5">
-      	<?php echo $dong['noidung'] ?>
+      <textarea name="NoiDung" id="NoiDung" cols="45" rows="5">
+      	<?php echo $dong['NoiDung'] ?>
       </textarea>
     </label></td>
   </tr>
   <tr>
     <td>Loại tin</td>
     <td><label>
-      <select name="loaitin" id="loaitin">
+      <select name="loaitintuc" id="loaitintuc">
       <?php
-	  $sql="select * from loaitin";
-	 $loaitin= mysql_query($sql);
-	  while($dong_loaitin=mysql_fetch_array($loaitin)){
-		  if($dong_loaitin['idloaitin']==$dong['idloaitin']){
+	  $sql="select * from loaitintuc";
+	 $loaitintuc= mysql_query($sql);
+	  while($dong_loaitintuc=mysql_fetch_array($loaitintuc)){
+		  if($dong_loaitintuc['MaLTT']==$dong['MaLTT']){
 	  ?>
       
-      <option value="<?php echo $dong_loaitin['idloaitin'] ?>" selected="selected"><?php echo $dong_loaitin['tenloaitin'] ?></option>
+      <option value="<?php echo $dong_loaitintuc['MaLTT'] ?>" selected="selected"><?php echo $dong_loaitintuc['TenLTT'] ?></option>
      <?php
 	  }else{
 	 ?>
-     <option value="<?php echo $dong_loaitin['idloaitin'] ?>"><?php echo $dong_loaitin['tenloaitin']?></option>
+     <option value="<?php echo $dong_loaitintuc['MaLTT'] ?>"><?php echo $dong_loaitintuc['TenLTT']?></option>
      <?php
 	  }
 	  }
@@ -69,27 +69,21 @@
   <tr>
     <td>Trạng thái</td>
     <td><label>
-      <select name="trangthai" id="trangthai">
+      <select name="AnHien" id="AnHien">
       <?php
-	  if($dong['trangthai']=='Hiển thị'){
+	  if($dong['AnHien']=='Hiển thị'){
 	  ?>
-        <option value="Hiển thị" selected>Hiển thị</option>
-        <option value="Không hiển thị">Không hiển thị</option>
+        <option value="1" selected>Hiển thị</option>
+        <option value="0">Không hiển thị</option>
         <?php
 	  }else{
 		?>
-         <option value="Hiển thị" >Hiển thị</option>
-        <option value="Không hiển thị" selected>Không hiển thị</option>
+         <option value="1" >Hiển thị</option>
+        <option value="0" selected>Không hiển thị</option>
         <?php
 	  }
 		?>
       </select>
-    </label></td>
-  </tr>
-  <tr>
-    <td>Thứ tự</td>
-    <td><label>
-      <input type="text" name="thutu" id="thutu" value="<?php echo $dong['thutu'] ?>">
     </label></td>
   </tr>
   <tr>

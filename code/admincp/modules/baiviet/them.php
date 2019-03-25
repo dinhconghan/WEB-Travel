@@ -10,38 +10,38 @@
   <tr>
     <td>Tên bài viết</td>
     <td><label>
-      <input type="text" name="tenbaiviet" id="tenbaiviet">
+      <input type="text" name="TieuDe" id="TieuDe">
     </label></td>
   </tr>
   <tr>
     <td>Ảnh minh họa</td>
     <td><label>
-      <input type="file" name="anhminhhoa" id="anhminhhoa" />
+      <input type="file" name="UrlHinh" id="UrlHinh" />
     </label></td>
   </tr>
   <tr>
     <td>Tóm tắt</td>
     <td><label>
-      <textarea name="tomtat" id="tomtat" cols="45" rows="5"></textarea>
+      <textarea name="TomTat" id="TomTat" cols="45" rows="5"></textarea>
     </label></td>
   </tr>
   <tr>
     <td>Nội dụng</td>
     <td><label>
-      <textarea name="noidung" id="noidung" cols="45" rows="5"></textarea>
+      <textarea name="NoiDung" id="NoiDung" cols="45" rows="5"></textarea>
     </label></td>
   </tr>
   <tr>
     <td>Loại tin</td>
     <td><label>
-      <select name="loaitin" id="loaitin">
+      <select name="loaitintuc" id="loaitintuc">
       <?php
-	  $sql="select * from loaitin";
-	 $loaitin= mysql_query($sql);
-	  while($dong=mysql_fetch_array($loaitin)){
+	  $sql="select * from loaitintuc";
+	 $loaitintuc= mysql_query($sql);
+	  while($dong=mysql_fetch_array($loaitintuc)){
 	  ?>
       
-      <option value="<?php echo $dong['idloaitin'] ?>"><?php echo $dong['tenloaitin'] ?></option>
+      <option value="<?php echo $dong['MaLTT'] ?>"><?php echo $dong['TenLTT'] ?></option>
      <?php
 	  }
 	 ?>
@@ -51,16 +51,10 @@
   <tr>
     <td>Trạng thái</td>
     <td><label>
-      <select name="trangthai" id="trangthai">
-        <option value="Hiển thị" selected>Hiển thị</option>
-        <option value="Không hiển thị">Không hiển thị</option>
+      <select name="AnHien" id="AnHien">
+        <option value="1" selected>Hiển thị</option>
+        <option value="0">Không hiển thị</option>
       </select>
-    </label></td>
-  </tr>
-  <tr>
-    <td>Thứ tự</td>
-    <td><label>
-      <input type="text" name="thutu" id="thutu">
     </label></td>
   </tr>
   <tr>

@@ -1,8 +1,12 @@
+
+</br>
 <?php
+
 	if(isset($_GET['ac'])){
 		$tam=$_GET['ac'];
-		
-	}else{
+	}
+	
+	else{
 		$tam='';
 	}
 	if($tam=='them'){
@@ -12,7 +16,6 @@
 			include('modules/baiviet/sua.php');
 		
 	}
-	
-		include('modules/baiviet/lietke.php');
+include('modules/baiviet/lietke.php');
 	
 ?>
